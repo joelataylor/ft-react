@@ -1,11 +1,12 @@
 import React from 'react';
 import { render} from 'react-dom';
 
-import { Router, Route, Link, IndexRoute, browserHistory } from 'react-router';
+import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 
 /*
   Import Components
 */
+import Default from './components/Default.js';
 import Home from './components/Home.js';
 import About from './components/About.js';
 import Contact from './components/Contact.js';
@@ -36,7 +37,8 @@ function requireAuth(nextState, replaceState) {
 */
 render((
   <Router history={browserHistory}>
-    <Route path="/" component={Home}>
+    <Route path="/" component={Default}>
+      <IndexRoute component={Home} />
       <Route path="about" component={About} />
       <Route path="contact" component={Contact} />
       <Route path="signup" component={Signup} />
