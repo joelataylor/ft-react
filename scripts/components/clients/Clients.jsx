@@ -1,6 +1,4 @@
 import React from 'react';
-import Firebase from 'firebase';
-const ref = new Firebase('https://ft-react.firebaseio.com/');
 
 const Clients = React.createClass({
   componentWillMount() {
@@ -13,7 +11,7 @@ const Clients = React.createClass({
   render: function () {
     return (
       <div>
-        <p>Lets see the clients list here!</p>
+        <h1>Clients</h1>
       </div>
     )
   }

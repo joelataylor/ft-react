@@ -37,29 +37,29 @@ function requireAuth(nextState, replaceState) {
 */
 render((
   <Router history={browserHistory}>
-    <Route path="/" component={Default}>
+    <Route path='/' component={Default}>
       <IndexRoute component={Home} />
-      <Route path="about" component={About} />
-      <Route path="contact" component={Contact} />
-      <Route path="signup" component={Signup} />
-      <Route path="login" component={Login} />
+      <Route path='about' component={About} />
+      <Route path='contact' component={Contact} />
+      <Route path='signup' component={Signup} />
+      <Route path='login' component={Login} />
     </Route>
-    <Route path="/app/:appId" component={App} onEnter={requireAuth}>
+    <Route path='/app/:appId' component={App} onEnter={requireAuth}>
       <IndexRoute component={Dashboard} />
-      <Route path="projects" component={Projects}>
-        <Route path="/app/:appId/project/:projectId" component={Project} />
+      <Route path='projects' component={Projects}>
+        <Route path='/app/:appId/project/:projectId' component={Project} />
       </Route>
-      <Route path="clients" component={Clients}>
-        <Route path="/app/:appId/client/:clientId" component={Client} />
+      <Route path='clients' component={Clients}>
+        <Route path='/app/:appId/client/:clientId' component={Client} />
       </Route>
-      <Route path="invoices" component={Invoices}>
-        <Route path="/app/:appId/invoice/:invoiceId" component={Invoice} />
+      <Route path='invoices' component={Invoices}>
+        <Route path='/app/:appId/invoice/:invoiceId' component={Invoice} />
       </Route>
-      <Route path="services" component={Services}>
-        <Route path="/app/:appId/service/:serviceId" component={Service} />
+      <Route path='services' component={Services}>
+        <Route path='/app/:appId/service/:serviceId' component={Service} />
       </Route>
-      <Route path="settings" component={Settings} />
+      <Route path='settings' component={Settings} />
     </Route>
-    <Route path="*" component={NotFound} />
+    <Route path='*' component={NotFound} />
   </Router>
 ), document.getElementById('main'));
