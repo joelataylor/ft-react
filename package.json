@@ -15,7 +15,7 @@
     "babel-preset-react": "^6.3.13",
     "babel-preset-stage-0": "^6.3.13",
     "babelify": "^7.2.0",
-    "browser-sync": "^2.11.0",
+    "browser-sync": "^2.11.1",
     "browserify": "^12.0.1",
     "classnames": "^2.2.3",
     "connect-history-api-fallback": "^1.1.0",

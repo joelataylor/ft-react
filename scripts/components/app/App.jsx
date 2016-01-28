@@ -4,15 +4,15 @@ import { browserHistory } from 'react-router';
 import Firebase from 'firebase';
 const ref = new Firebase('https://ft-react.firebaseio.com/');
 
-import Header from './Header.js';
-import Footer from './Footer.js';
+import Header from './Header.jsx';
+import Footer from '../global/Footer.jsx';
 
 
 const App = React.createClass({
   getInitialState() {
     return {
-      user: {},
-      app: {}
+      user: undefined,
+      app: undefined
     }
   },
 
@@ -62,6 +62,10 @@ const App = React.createClass({
   },
 
   render: function () {
+    if (!this.state.app) {
+      return <h2>Still loading ...</h2>
+    }
+
     return (
       <div className="container">
         <Header logout={this.logout} profileImageURL={this.state.user.profileImageURL} appId={this.state.app.id} />

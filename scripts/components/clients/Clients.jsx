@@ -1,40 +1,43 @@
 import React from 'react';
-import Rebase from 're-base';
+import Firebase from 'firebase';
+const ref = new Firebase('https://ft-react.firebaseio.com/');
 import ClientForm from './ClientForm.jsx';
 import ClientBox from './ClientBox.jsx';
-
-const base = Rebase.createClass('https://ft-react.firebaseio.com');
 
 const Clients = React.createClass({
   getInitialState() {
     return {
-      clients: [],
-      joel: true
+      clients: undefined
     }
   },
 
-  /*
-   * I'm not sure this is correct!? But component(Will/Did)Mount don't have the props.appId param
-   */
-  componentWillReceiveProps(nextProps) {
-    base.syncState(`apps/${nextProps.appId}/clients`, {
-      context: this,
-      state: 'clients',
-      asArray: true
+  componentDidMount() {
+    const clients = ref.child('apps/' + this.props.appId + '/clients');
+    clients.orderByChild('business_name').on('value', (snapshot)=> {
+      console.log(snapshot.val());
+      this.setState({
+        clients: snapshot.val()
+      });
     });
   },
 
-  addClient(client) {
-    this.setState({
-      clients: this.state.clients.concat([client]),
-      joel: false
-    });
+  addClient(data) {
+    const client = ref.child(`apps/${this.props.appId}/clients`).push().set(data);
+  },
+
+  removeClient(key) {
+    const client = ref.child(`apps/${this.props.appId}/clients/${key}`).remove();
   },
 
   render: function () {
-    var clientboxes = this.state.clients.map(function(client) {
+    if (!this.state.clients) {
+      return <h2>Loading Clients ...</h2>
+    }
+
+    let clientboxes = Object.keys(this.state.clients).map((client_key)=> {
+      let client = this.state.clients[client_key];
       return (
-        <ClientBox client={client} key={client.id} />
+        <ClientBox client={client} index={client_key} key={client_key} removeClient={this.removeClient} />
       );
     });
 
@@ -42,7 +45,7 @@ const Clients = React.createClass({
       <div className='clearfix'>
         <div className='col col-8'>
           <h1>Clients</h1>
-          <ul className='list-reset card-list flex flex-justify'>
+          <ul className='list-reset card-list flex flex-justify flex-wrap'>
             {clientboxes}
           </ul>
         </div>

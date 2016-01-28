@@ -1,8 +1,8 @@
 import React from 'react';
 import Firebase from 'firebase';
 const ref = new Firebase('https://ft-react.firebaseio.com/');
-import LoginButtons from './app/LoginButtons.jsx';
-import AuthenticateHelper from '../helpers/AuthenticateHelper.js';
+import LoginButtons from './LoginButtons.jsx';
+import AuthenticateHelper from '../../helpers/AuthenticateHelper.js';
 import { browserHistory, RouterContext } from 'react-router';
 
 const Login = React.createClass({

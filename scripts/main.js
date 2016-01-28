@@ -6,15 +6,15 @@ import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 /*
   Import Components
 */
-import Default from './components/Default.js';
-import Home from './components/Home.js';
-import About from './components/About.js';
-import Contact from './components/Contact.js';
-import Signup from './components/Signup.js';
-import Login from './components/Login.js';
+import Default from './components/Default.jsx';
+import Home from './components/Home.jsx';
+import About from './components/About.jsx';
+import Contact from './components/Contact.jsx';
+import Signup from './components/app/Signup.jsx';
+import Login from './components/app/Login.jsx';
 
-import App from './components/App.js';
-import Dashboard from './components/Dashboard.js';
+import App from './components/app/App.jsx';
+import Dashboard from './components/app/Dashboard.jsx';
 import Projects from './components/projects/Projects.jsx';
 import Project from './components/projects/Project.jsx';
 import Clients from './components/clients/Clients.jsx';
@@ -23,9 +23,9 @@ import Invoices from './components/invoices/Invoices.jsx';
 import Invoice from './components/invoices/Invoice.jsx';
 import Services from './components/services/Services.jsx';
 import Service from './components/services/Service.jsx';
-import Settings from './components/Settings.js';
+import Settings from './components/app/Settings.jsx';
 
-import NotFound from './components/NotFound.jsx';
+import NotFound from './components/global/NotFound.jsx';
 
 
 function requireAuth(nextState, replaceState) {
