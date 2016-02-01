@@ -30,8 +30,8 @@ const ClientBox = React.createClass({
         </div>
 
         <div className="clearfix card__footer">
-          <button className='btn left h3'><FontAwesome name='pencil' /></button>
-          <button className='btn right h3 red' onClick={this.props.removeClient.bind(null, this.props.index)}><FontAwesome name='trash' /></button>
+          <button className='btn left h3' onClick={this.props.setEditingClient.bind(null, this.props.client.id)}><FontAwesome name='pencil' /></button>
+          <button className='btn right h3 red' onClick={this.props.removeClient.bind(null, this.props.client.id)}><FontAwesome name='trash' /></button>
         </div>
       </li>
     )

@@ -7,7 +7,6 @@ import { browserHistory, RouterContext } from 'react-router';
 
 const Login = React.createClass({
   componentWillMount() {
-    console.log("Checking to see if we can log them in");
     var token = localStorage.getItem('token');
     if(token) {
       ref.authWithCustomToken(token, this.authHandler);
@@ -15,7 +14,6 @@ const Login = React.createClass({
   },
 
   startAuth(provider) {
-    console.log("Trying to auth with " + provider);
     ref.authWithOAuthPopup(provider, this.authHandler);
   },
 

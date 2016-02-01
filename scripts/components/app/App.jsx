@@ -17,7 +17,6 @@ const App = React.createClass({
   },
 
   componentWillMount() {
-    console.log("Make sure user is logged in and has access");
     var token = localStorage.getItem('token');
     if (token) {
       ref.authWithCustomToken(token, this.authHandler);

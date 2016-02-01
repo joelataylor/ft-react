@@ -15,7 +15,6 @@ const Signup = React.createClass({
   },
 
   componentWillMount() {
-    console.log("Checking to see if we can log them in");
     var token = localStorage.getItem('token');
     if (token) {
       ref.authWithCustomToken(token, this.authHandler);
@@ -25,7 +24,6 @@ const Signup = React.createClass({
   },
 
   startAuth(provider) {
-    console.log("Trying to auth with " + provider);
     let options = {};
 
     if (provider === 'google') {

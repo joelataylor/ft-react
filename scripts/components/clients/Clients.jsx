@@ -7,16 +7,22 @@ import ClientBox from './ClientBox.jsx';
 const Clients = React.createClass({
   getInitialState() {
     return {
-      clients: undefined
+      clients: undefined,
+      editingClient: undefined
     }
   },
 
   componentDidMount() {
     const clients = ref.child('apps/' + this.props.appId + '/clients');
     clients.orderByChild('business_name').on('value', (snapshot)=> {
-      console.log(snapshot.val());
+      let localClients = [];
+      snapshot.forEach((client)=>{
+        var data = client.exportVal();
+        data.id = client.key();
+        localClients.push(data);
+      });
       this.setState({
-        clients: snapshot.val()
+        clients: localClients
       });
     });
   },
@@ -26,7 +32,26 @@ const Clients = React.createClass({
   },
 
   removeClient(key) {
-    const client = ref.child(`apps/${this.props.appId}/clients/${key}`).remove();
+    if (window.confirm('Are you sure you want to delete this client?')) {
+      const client = ref.child(`apps/${this.props.appId}/clients/${key}`).remove();
+    }
+  },
+
+  editClient(data) {
+    const client = ref.child(`apps/${this.props.appId}/clients/${data.key}`).set(data);
+    this.setState({
+      editingClient: undefined
+    });
+  },
+
+  setEditingClient(key) {
+    ref.child(`apps/${this.props.appId}/clients/${key}`).once('value', (snapshot)=> {
+      let editClient = snapshot.val();
+      editClient.key = snapshot.key();
+      this.setState({
+        editingClient: editClient
+      });
+    });
   },
 
   render: function () {
@@ -34,10 +59,9 @@ const Clients = React.createClass({
       return <h2>Loading Clients ...</h2>
     }
 
-    let clientboxes = Object.keys(this.state.clients).map((client_key)=> {
-      let client = this.state.clients[client_key];
+    let clientboxes = this.state.clients.map((client)=> {
       return (
-        <ClientBox client={client} index={client_key} key={client_key} removeClient={this.removeClient} />
+        <ClientBox client={client} index={client.id} key={client.id} removeClient={this.removeClient} setEditingClient={this.setEditingClient} />
       );
     });
 
@@ -51,7 +75,7 @@ const Clients = React.createClass({
         </div>
 
         <div className='col col-3 col-right'>
-          <ClientForm addClient={this.addClient} />
+          <ClientForm addClient={this.addClient} client={this.state.editingClient} editClient={this.editClient} />
         </div>
       </div>
     )
