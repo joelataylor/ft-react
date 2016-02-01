@@ -29,6 +29,7 @@
     "gulp-uglify": "^1.5.1",
     "gulp-util": "^3.0.7",
     "history": "^1.17.0",
+    "md5": "^2.0.0",
     "re-base": "^1.5.1",
     "react": "^0.14.7",
     "react-catalyst": "^0.3.0",

@@ -1,13 +1,18 @@
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
+import md5 from 'md5';
 
 const ClientBox = React.createClass({
+  getGravatar: function() {
+    return `http://www.gravatar.com/avatar/${md5(this.props.client.contact_email)}?d=identicon`;
+  },
+
   render: function () {
     return (
       <li className='border rounded mb2 mr2 card bg-white'>
 
         <div className="clearfix ml2 mr2 mb2 mt2">
-          <img src="http://placehold.it/150x150" className="left circle bg-navy mr1 card__image" />
+          <img src={this.getGravatar()} className="left circle bg-navy mr1 card__image" />
           <div className="overflow-hidden">
             <p className='card__contact_name m0'>{this.props.client.contact_name}</p>
             <p className='card__contact_phone m0'>
