@@ -9,6 +9,7 @@ const ClientForm = React.createClass({
     return {
       processing: false,
       buttonText: 'Create',
+      isEditing: false,
       client: {
         business_name: null,
         website: null,
@@ -28,6 +29,7 @@ const ClientForm = React.createClass({
   componentWillReceiveProps: function(newProps) {
     if (newProps.client) {
       this.setState({
+        isEditing: true,
         buttonText: 'Edit',
         client: newProps.client
       });
@@ -48,7 +50,20 @@ const ClientForm = React.createClass({
     this.setState(this.getInitialState());
   },
 
+  cancelEditing: function(event) {
+    event.preventDefault();
+    this.setState(this.getInitialState());
+    this.props.resetEditingClient();
+  },
+
   render: function () {
+    let cancelButton;
+    if (this.state.isEditing) {
+      cancelButton = <button type="submit" className="btn btn-primary bg-silver ml2" onClick={this.cancelEditing}>Cancel Edit</button>;
+    } else {
+      cancelButton = '';
+    }
+
     return (
       <div className='clearfix'>
         <h2>Add New Client</h2>
@@ -80,6 +95,7 @@ const ClientForm = React.createClass({
           </label>
 
           <button type="submit" className="btn btn-primary" disabled={this.state.processing} onClick={this.handleButtonClick}>{this.state.buttonText}!</button>
+          {cancelButton}
         </form>
       </div>
     )

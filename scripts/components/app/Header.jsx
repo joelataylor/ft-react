@@ -18,6 +18,7 @@ const Header = React.createClass({
             <img src={this.props.profileImageURL} className="rounded left mr1" style={{height:'36px'}} />
             <IndexLink to={`/app/${appId}`} activeClassName='muted' className='btn btn-primary py1 mr1'>Dashboard</IndexLink>
             <Link to={`/app/${appId}/projects`} activeClassName='muted' className='btn btn-primary py1 mr1'>Projects</Link>
+            <Link to={`/app/${appId}/invoices`} activeClassName='muted' className='btn btn-primary py1 mr1'>Invoices</Link>
             <Link to={`/app/${appId}/clients`} activeClassName='muted' className='btn btn-primary py1 mr1'>Clients</Link>
             <Link to={`/app/${appId}/services`} activeClassName='muted' className='btn btn-primary py1 mr1'>Services</Link>
           </div>

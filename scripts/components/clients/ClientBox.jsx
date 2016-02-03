@@ -1,6 +1,7 @@
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import md5 from 'md5';
+import classNames from 'classnames';
 
 const ClientBox = React.createClass({
   getGravatar: function() {
@@ -8,11 +9,25 @@ const ClientBox = React.createClass({
   },
 
   render: function () {
+    let cardClasses = classNames({
+      'border': true,
+      'rounded': true,
+      'mb2': true,
+      'mr2': true,
+      'card': true,
+      'bg-white': true,
+      'relative': true,
+      'overflow-hidden': true,
+      'is-active': this.props.client.active,
+      'is-inactive': !this.props.client.active,
+      'is-editing': this.props.isEditing
+    });
+
     return (
-      <li className='border rounded mb2 mr2 card bg-white'>
+      <li className={cardClasses}>
 
         <div className="clearfix ml2 mr2 mb2 mt2">
-          <img src={this.getGravatar()} className="left circle bg-navy mr1 card__image" />
+          <img src={this.getGravatar()} className="left circle mr1 card__image" />
           <div className="overflow-hidden">
             <p className='card__contact_name m0'>{this.props.client.contact_name}</p>
             <p className='card__contact_phone m0'>
@@ -29,8 +44,8 @@ const ClientBox = React.createClass({
             {this.props.client.address}<br/>{this.props.client.city}, {this.props.client.state} {this.props.client.zip}
           </p>
           <p>
-            <a href='' className='btn btn-outline'>Projects</a> &nbsp;
-            <a href='' className='btn btn-outline'>Invoices</a>
+            <a href={`projects/client/${this.props.client.key}`} className='btn btn-outline'>Projects</a> &nbsp;
+            <a href={`invoices/client/${this.props.client.key}`} className='btn btn-outline'>Invoices</a>
           </p>
         </div>
 

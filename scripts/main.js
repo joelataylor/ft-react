@@ -18,6 +18,7 @@ import Dashboard from './components/app/Dashboard.jsx';
 import Projects from './components/projects/Projects.jsx';
 import Project from './components/projects/Project.jsx';
 import Clients from './components/clients/Clients.jsx';
+import ClientList from './components/clients/ClientList.jsx';
 import Client from './components/clients/Client.jsx';
 import Invoices from './components/invoices/Invoices.jsx';
 import Invoice from './components/invoices/Invoice.jsx';
@@ -47,12 +48,15 @@ render((
     <Route path='/app/:appId' component={App} onEnter={requireAuth}>
       <IndexRoute component={Dashboard} />
       <Route path='projects' component={Projects}>
+        <Route path='/app/:appId/projects/client/:clientId' component={Projects} />
         <Route path='/app/:appId/project/:projectId' component={Project} />
       </Route>
       <Route path='clients' component={Clients}>
+        <IndexRoute component={ClientList} />
         <Route path='/app/:appId/client/:clientId' component={Client} />
       </Route>
       <Route path='invoices' component={Invoices}>
+        <Route path='/app/:appId/invoices/client/:clientId' component={Invoices} />
         <Route path='/app/:appId/invoice/:invoiceId' component={Invoice} />
       </Route>
       <Route path='services' component={Services}>
