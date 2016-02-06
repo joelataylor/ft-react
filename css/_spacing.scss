@@ -1,0 +1,60 @@
+// ============================================= //
+// SPACING VARIABLES                             //
+// ============================================= //
+
+$spacing: (
+  '0' '0rem',
+  '1' '1rem',
+  '2' '2rem',
+  '3' '3rem',
+  '4' '4rem',
+  '5' '5rem',
+  '6' '6rem'
+);
+
+@each $space in $spacing {
+  $size:  nth($space, 1);
+  $value: nth($space, 2);
+
+  .ma-#{$size} {
+    margin-top: #{$value} !important;
+    margin-right: #{$value} !important;
+    margin-left: #{$value} !important;
+    margin-bottom: #{$value} !important;
+  }
+
+  .mt-#{$size} { margin-top: #{$value} !important; }
+  .mb-#{$size} { margin-bottom: #{$value} !important; }
+  .ml-#{$size} { margin-left: #{$value} !important; }
+  .mr-#{$size} { margin-right: #{$value} !important; }
+
+  .mh-#{$size} {
+    margin-left: #{$value} !important;
+    margin-right: #{$value} !important;
+  }
+  .mv-#{$size} {
+    margin-top: #{$value} !important;
+    margin-bottom: #{$value} !important;
+  }
+
+  .pa-#{$size} {
+    padding-top: #{$value} !important;
+    padding-right: #{$value} !important;
+    padding-left: #{$value} !important;
+    padding-bottom: #{$value} !important;
+  }
+
+  .pt-#{$size} { padding-top: #{$value} !important; }
+  .pb-#{$size} { padding-bottom: #{$value} !important; }
+  .pl-#{$size} { padding-left: #{$value} !important; }
+  .pr-#{$size} { padding-right: #{$value} !important; }
+
+  .ph-#{$size} {
+    padding-left: #{$value} !important;
+    padding-right: #{$value} !important;
+  }
+  .pv-#{$size} {
+    padding-top: #{$value} !important;
+    padding-bottom: #{$value} !important;
+  }
+}

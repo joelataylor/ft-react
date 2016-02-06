@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 import FontAwesome from 'react-fontawesome';
 import md5 from 'md5';
 import classNames from 'classnames';
@@ -10,13 +11,9 @@ const ClientBox = React.createClass({
 
   render: function () {
     let cardClasses = classNames({
-      'border': true,
-      'rounded': true,
-      'mb2': true,
-      'mr2': true,
       'card': true,
-      'bg-white': true,
-      'relative': true,
+      'column': true,
+      'mb-2': true,
       'overflow-hidden': true,
       'is-active': this.props.client.active,
       'is-inactive': !this.props.client.active,
@@ -24,36 +21,44 @@ const ClientBox = React.createClass({
     });
 
     return (
-      <li className={cardClasses}>
+      <article className={cardClasses}>
+        <div className="card-content">
+          <h2 className="title">
+            <Link to={`/app/${this.props.appId}/client/${this.props.index}`}>
+              {this.props.client.business_name}
+            </Link>
+          </h2>
 
-        <div className="clearfix ml2 mr2 mb2 mt2">
-          <img src={this.getGravatar()} className="left circle mr1 card__image" />
-          <div className="overflow-hidden">
-            <p className='card__contact_name m0'>{this.props.client.contact_name}</p>
-            <p className='card__contact_phone m0'>
-              <a href={`mailto:${this.props.client.contact_email}`} className="block">{this.props.client.contact_email}</a>
-              {this.props.client.contact_phone}
-            </p>
+          <div className="media">
+            <figure className="media-image">
+              <img src={this.getGravatar()} className="" />
+            </figure>
+            <div className="media-content">
+              <p className=''>{this.props.client.contact_name}</p>
+              <p className=''><a href={`mailto:${this.props.client.contact_email}`} className="block">{this.props.client.contact_email}</a></p>
+              <p>{this.props.client.contact_phone}</p>
+            </div>
+          </div>
+
+          <div className="">
+            <p><a href={this.props.client.website} className="block">{this.props.client.website}</a></p>
+            <p>{this.props.client.address}<br/>{this.props.client.city}, {this.props.client.state} {this.props.client.zip}</p>
           </div>
         </div>
 
-        <div className="clearfix ml2 mr2 mb2 mt2">
-          <h2>{this.props.client.business_name}</h2>
-          <p>
-            <a href={this.props.client.website} className="block">{this.props.client.website}</a>
-            {this.props.client.address}<br/>{this.props.client.city}, {this.props.client.state} {this.props.client.zip}
-          </p>
-          <p>
-            <a href={`projects/client/${this.props.client.key}`} className='btn btn-outline'>Projects</a> &nbsp;
-            <a href={`invoices/client/${this.props.client.key}`} className='btn btn-outline'>Invoices</a>
-          </p>
+        <div className="card-footer">
+          <div className="navbar">
+            <div className="navbar-left">
+              <button className='navbar-item button is-danger' onClick={this.props.removeClient.bind(null, this.props.client.id)}><FontAwesome name='trash' /></button>
+              <button className='navbar-item button is-primary' onClick={this.props.setEditingClient.bind(null, this.props.client.id)}><FontAwesome name='pencil' /></button>
+            </div>
+            <div className="navbar-right">
+              <a href={`projects/client/${this.props.client.key}`} className='navbar-item button is-outline'>Projects</a>
+              <a href={`invoices/client/${this.props.client.key}`} className='navbar-item button is-outline'>Invoices</a>
+            </div>
+          </div>
         </div>
-
-        <div className="clearfix card__footer">
-          <button className='btn left h3' onClick={this.props.setEditingClient.bind(null, this.props.client.id)}><FontAwesome name='pencil' /></button>
-          <button className='btn right h3 red' onClick={this.props.removeClient.bind(null, this.props.client.id)}><FontAwesome name='trash' /></button>
-        </div>
-      </li>
+      </article>
     )
   }
 });

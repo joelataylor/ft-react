@@ -66,23 +66,27 @@ const ClientList = React.createClass({
     let clientboxes = this.state.clients.map((client)=> {
       let isEditing = (this.state.editingClient && this.state.editingClient.key == client.id) ? true : false;
       return (
-        <ClientBox client={client} index={client.id} key={client.id} removeClient={this.removeClient} setEditingClient={this.setEditingClient} isEditing={isEditing} />
+        <ClientBox appId={this.props.appId} client={client} index={client.id} key={client.id} removeClient={this.removeClient} setEditingClient={this.setEditingClient} isEditing={isEditing} />
       );
     });
 
     return (
-      <div className='client-list'>
-        <div className='col col-8'>
-          <h1>Clients</h1>
-          <ul className='list-reset card-list flex flex-justify flex-wrap'>
-            {clientboxes}
-          </ul>
-        </div>
+      <section className='section'>
+        <div className='container'>
+          <div className='columns'>
+            <div className='column is-8'>
+              <h1 className='title is-2'>Clients</h1>
+              <div className='columns is-grid'>
+                {clientboxes}
+              </div>
+            </div>
 
-        <div className='col col-3 col-right'>
-          <ClientForm addClient={this.addClient} client={this.state.editingClient} editClient={this.editClient} resetEditingClient={this.resetEditingClient} />
+            <div className='column is-3'>
+              <ClientForm addClient={this.addClient} client={this.state.editingClient} editClient={this.editClient} resetEditingClient={this.resetEditingClient} />
+            </div>
+          </div>
         </div>
-      </div>
+      </section>
     )
   }
 });

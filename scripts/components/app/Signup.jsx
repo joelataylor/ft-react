@@ -4,13 +4,15 @@ const ref = new Firebase('https://ft-react.firebaseio.com/');
 import h from '../../helpers/helpers';
 import { browserHistory } from 'react-router';
 import classNames from 'classnames';
+import FontAwesome from 'react-fontawesome';
 import LoginButtons from './LoginButtons.jsx';
 import AuthenticateHelper from '../../helpers/AuthenticateHelper.js';
 
 const Signup = React.createClass({
   getInitialState() {
     return {
-      'slugAvailable': true
+      'slugAvailable': true,
+      'checkingSlug': false
     }
   },
 
@@ -103,23 +105,42 @@ const Signup = React.createClass({
 
   render() {
     let slugClass = classNames({
-      'field': true,
-      'col-6': true,
-      'mr1': true,
+      'input': true,
       'is-error': !this.state.slugAvailable,
       'is-success': this.state.slugAvailable
     });
-    return (
-      <div className="container">
-        <div className="clearfix mx-auto col-7 center bg-darken-1 mt3 border rounded p1">
-          <h1>Sign up for Freelance Trackr!</h1>
-          <label className="mr1">Choose Your URL Slug:</label>
-          <input type="text" className={slugClass} defaultValue={h.getFunName()} onKeyUp={this.checkSlug} ref="appId" />
-          <button className="btn btn-outline" onClick={this.refreshSlug}><i className="fa fa-refresh fa-fw"></i></button>
 
-          <LoginButtons buttonText='Join' startAuth={this.startAuth} />
+    let buttonClass = classNames({
+      'button': true,
+      'is-success': true,
+      'is-loading': this.state.checkingSlug
+    });
+
+    return (
+      <section className="hero is-info is-medium">
+        <div className="container">
+          <div className="hero-content">
+            <h1 className="title is-1">Sign up for FreelanceTrackr!</h1>
+            <div className="columns">
+              <div className="column"></div>
+              <div className="column is-3 content">
+                <h3>
+                  <label className="title is-5">Choose Your URL Slug:</label>
+                </h3>
+              </div>
+              <div className="column is-5">
+                <p className="control is-grouped">
+                  <input type="text" className={slugClass} defaultValue={h.getFunName()} onKeyUp={this.checkSlug} ref="appId" />
+                  <a className={buttonClass} onClick={this.refreshSlug}><FontAwesome name="refresh" /></a>
+                </p>
+                <LoginButtons startAuth={this.startAuth} />
+              </div>
+              <div className="column"></div>
+            </div>
+          </div>
         </div>
-      </div>
+
+      </section>
     );
   }
 

@@ -9,10 +9,24 @@ const LoginButtons = React.createClass({
 
   render() {
     return (
-      <nav className='login mt3 mb3 flex flex-space-around'>
-        <button className='btn btn-primary github' onClick={this.login.bind(this, 'github')}><FontAwesome name='github' size='2x' className='mr2 btn__icon' /><span className='btn__text--withicon'>{this.props.buttonText} with Github</span></button>
-        <button className='btn btn-primary google' onClick={this.login.bind(this, 'google')}><FontAwesome name='google' size='2x' className='mr2 btn__icon' /><span className='btn__text--withicon'>{this.props.buttonText} with Google</span></button>
-        <button className='btn btn-primary twitter' onClick={this.login.bind(this, 'twitter')}><FontAwesome name='twitter' size='2x' className='mr2 btn__icon' /><span className='btn__text--withicon'>{this.props.buttonText} with Twitter</span></button>
+      <nav className='login navbar is-boxed'>
+        <div className="navbar-item is-right">
+          <a className='button is-primary' onClick={this.login.bind(this, 'github')}>
+            <FontAwesome name='github' /> with Github
+          </a>
+        </div>
+
+        <div className="navbar-item is-centered">
+          <a className='button is-primary' onClick={this.login.bind(this, 'google')}>
+            <FontAwesome name='google' /> with Google
+          </a>
+        </div>
+
+        <div className="navbar-item is-left">
+          <a className='button is-primary' onClick={this.login.bind(this, 'twitter')}>
+            <FontAwesome name='twitter' /> with Twitter
+          </a>
+        </div>
       </nav>
     )
   }

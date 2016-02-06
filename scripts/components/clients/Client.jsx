@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 import Firebase from 'firebase';
 const ref = new Firebase('https://ft-react.firebaseio.com/');
 
@@ -24,8 +25,17 @@ const Client = React.createClass({
     }
 
     return (
-      <div>
-        <p>{JSON.stringify(this.state.client, null, '\t')}</p>
+      <div className="hero">
+        <div className="hero-header">
+          <section className="section">
+            <Link to={`/app/${this.props.appId}/clients`} className="button is-primary is-left">Back to Clients</Link>
+          </section>
+        </div>
+        <div className="hero-content">
+          <div className="container">
+            <pre className="is-left">{JSON.stringify(this.state.client, null, '\t')}</pre>
+          </div>
+        </div>
       </div>
     );
   }

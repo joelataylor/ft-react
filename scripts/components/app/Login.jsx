@@ -45,10 +45,14 @@ const Login = React.createClass({
 
   render() {
     return (
-      <div>
-        <h1>Login</h1>
-        <LoginButtons buttonText='Login' startAuth={this.startAuth} />
-      </div>
+      <section className="hero is-success is-large">
+        <div className="hero-content">
+          <div className="container">
+            <h1 className="title is-centered">Login</h1>
+            <LoginButtons startAuth={this.startAuth} />
+          </div>
+        </div>
+      </section>
     )
   }
 });

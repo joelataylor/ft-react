@@ -66,7 +66,7 @@ const App = React.createClass({
     }
 
     return (
-      <div className="container">
+      <div className="app">
         <Header logout={this.logout} profileImageURL={this.state.user.profileImageURL} appId={this.state.app.id} />
 
         {React.cloneElement(this.props.children, {appId: this.state.app.id})}

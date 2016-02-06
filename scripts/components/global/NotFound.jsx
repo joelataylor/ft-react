@@ -3,9 +3,11 @@ import React, { PropTypes } from 'react'
 const NotFound = React.createClass({
   render () {
     return (
-      <div>
-        <h1>Not Found!</h1>
-      </div>
+      <section className="section">
+        <div className="container">
+          <h1 className="title">Not Found!</h1>
+        </div>
+      </section>
     )
   }
 })

@@ -6,26 +6,34 @@ const Default = React.createClass({
   render () {
     return (
       <div>
-        <header className="mb2 py2 border-bottom bg-white">
-          <nav className="container clearfix">
-            <div className="sm-col">
-              <IndexLink to="/" activeClassName='blue' className="btn p0 mr2 h3 logo bold">FreelanceTrackr</IndexLink>
-              <Link to="about" activeClassName='muted' className="btn btn-primary py1 mr1">About</Link>
-              <Link to="contact" activeClassName='muted' className="btn btn-primary py1 mr1">Contact</Link>
+        <header className="header">
+          <div className="container">
+            <div className="header-left">
+              <IndexLink to="/" activeClassName='is-active' className="header-item logo bold"><i className='fa fa-send-o'></i> FreelanceTrackr</IndexLink>
+              <Link to="about" activeClassName='is-active' className="header-tab">About</Link>
+              <Link to="contact" activeClassName='is-active' className="header-tab">Contact</Link>
             </div>
-            <div className="sm-col-right">
-              <Link to="signup" activeClassName='blue' className="btn btn-outline py1 ml1">Signup</Link>
-              <Link to="login" activeClassName='blue' className="btn btn-outline py1 ml1">Login</Link>
+
+            <span className="header-toggle">
+              <span></span>
+              <span></span>
+              <span></span>
+            </span>
+
+            <div className="header-right header-menu">
+              <span className="header-item">
+                <Link to="signup" activeClassName='blue' className="button">Signup</Link>
+              </span>
+              <span className="header-item">
+                <Link to="login" activeClassName='blue' className="button">Login</Link>
+              </span>
             </div>
-          </nav>
+          </div>
         </header>
 
-        <div className="container">
+        {this.props.children}
 
-          {this.props.children}
-
-          <Footer />
-        </div>
+        <Footer />
       </div>
     )
   }

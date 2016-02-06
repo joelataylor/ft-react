@@ -7,6 +7,7 @@ var watchify = require('watchify');
 var notify = require('gulp-notify');
 
 var sass = require('gulp-sass');
+var moduleImporter = require('sass-module-importer');
 var autoprefixer = require('gulp-autoprefixer');
 var uglify = require('gulp-uglify');
 var rename = require('gulp-rename');
@@ -22,7 +23,6 @@ var historyApiFallback = require('connect-history-api-fallback');
 */
 gulp.task('styles',function() {
   // move over fonts
-
   gulp.src('css/fonts/**.*')
     .pipe(gulp.dest('build/css/fonts'))
 
@@ -30,8 +30,11 @@ gulp.task('styles',function() {
     .pipe(gulp.dest('build/css/fonts'))
 
   // Compiles CSS
-  gulp.src('css/styles.scss')
-    .pipe(sass())
+  gulp.src('css/**/*.scss')
+    .pipe(sass({
+      importer: moduleImporter(),
+      errLogToConsole: true
+    }))
     .pipe(autoprefixer())
     .pipe(gulp.dest('./build/css/'))
     .pipe(reload({stream:true}));
