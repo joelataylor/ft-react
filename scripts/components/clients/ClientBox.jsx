@@ -31,7 +31,7 @@ const ClientBox = React.createClass({
 
           <div className="media">
             <figure className="media-image">
-              <img src={this.getGravatar()} className="" />
+              <img src={this.getGravatar()} className="round" />
             </figure>
             <div className="media-content">
               <p className=''>{this.props.client.contact_name}</p>

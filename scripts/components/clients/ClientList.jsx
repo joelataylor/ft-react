@@ -5,6 +5,10 @@ import ClientForm from './ClientForm.jsx';
 import ClientBox from './ClientBox.jsx';
 
 const ClientList = React.createClass({
+  propTypes: {
+    appId: React.PropTypes.string.isRequired
+  },
+
   getInitialState() {
     return {
       clients: undefined,
@@ -13,7 +17,7 @@ const ClientList = React.createClass({
   },
 
   componentDidMount() {
-    const clients = ref.child('apps/' + this.props.appId + '/clients');
+    const clients = ref.child(`apps/${this.props.appId}/clients`);
     clients.orderByChild('business_name').on('value', (snapshot)=> {
       let localClients = [];
       snapshot.forEach((client)=>{

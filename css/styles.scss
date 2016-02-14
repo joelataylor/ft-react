@@ -45,8 +45,9 @@ $fa-font-path: "../css/fonts" !default;
   font-weight: 600;
 }
 
-.rounded {
-  border-radius: 3px;
+.round {
+  border-radius: 100%;
+  overflow: hidden;
 }
 
 .card {
@@ -63,7 +64,11 @@ $fa-font-path: "../css/fonts" !default;
   }
 
   &:hover {
-    box-shadow: 0px 0px 3px #c9c9c9;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1), 0 0 5px 3px rgba(0, 0, 0, 0.1);
+  }
+
+  .media-image img {
+    box-shadow: 0 0 5px rgba(0,0,0,.2);
   }
 }
 

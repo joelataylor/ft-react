@@ -3,6 +3,11 @@ import { Link, IndexLink } from 'react-router';
 import FontAwesome from 'react-fontawesome';
 
 const Header = React.createClass({
+  propTypes: {
+    profileImageURL: React.PropTypes.string.isRequired,
+    logout: React.PropTypes.func.isRequired
+  },
+
   logout(event) {
     event.preventDefault();
     this.props.logout();

@@ -6,6 +6,13 @@ import FontAwesome from 'react-fontawesome';
 const ClientForm = React.createClass({
   mixins: [Catalyst.LinkedStateMixin],
 
+  propTypes: {
+    addClient: React.PropTypes.func.isRequired,
+    editClient: React.PropTypes.func.isRequired,
+    resetEditingClient: React.PropTypes.func.isRequired,
+    client: React.PropTypes.object
+  },
+
   getInitialState: function() {
     return {
       processing: false,
